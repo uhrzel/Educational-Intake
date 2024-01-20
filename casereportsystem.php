@@ -36,7 +36,7 @@ if (!empty($search_query)) {
         </button>
       </div>
       <form method="post" action="education-intake-form.php">
-        <h1>Department of Education Intake Sheet</h1>
+        <h1>DepEd Intake Sheet</h1>
 
         <h2>I. INFORMATION:</h2>
 
@@ -230,7 +230,7 @@ if (!empty($search_query)) {
                 <th>DELETE</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="searchResults">
               <?php
               $query = "SELECT * FROM education_intake";
               $query_run = $connection->query($query); // Using PDO query method
@@ -239,7 +239,7 @@ if (!empty($search_query)) {
                 while ($row = $query_run->fetch(PDO::FETCH_ASSOC)) {
               ?>
                   <tr>
-                    <td><?php echo $row['intake_id']; ?></td>
+                    <td class="intake-id"><?php echo $row['intake_id']; ?></td>
                     <td><?php echo $row['victim_name'] ?></td>
                     <td><?php echo $row['victim_date_of_birth']; ?></td>
                     <td><?php echo $row['victim_age']; ?></td>
@@ -496,6 +496,23 @@ if (!empty($search_query)) {
             // Handle error as needed
           }
         });
+      });
+    });
+
+    // Real-time search functionality
+    document.getElementById('search').addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const tableRows = document.querySelectorAll('#searchResults tr');
+
+      tableRows.forEach(row => {
+        const intake_id = row.querySelector('.intake-id').textContent.toLowerCase();
+
+
+        if (intake_id.includes(searchTerm)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
       });
     });
   </script>

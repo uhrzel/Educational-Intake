@@ -2,10 +2,16 @@
 session_start();
 include('includes/header.php');
 ?>
+<style>
+  .btn {
+    color: white;
 
+  }
 
-
-
+  .btn:hover {
+    color: white;
+  }
+</style>
 <div class="container">
 
   <!-- Outer Row -->
@@ -31,7 +37,7 @@ include('includes/header.php');
                     <input type="password" name="passwordd" class="form-control form-control-user" placeholder="Password">
                   </div>
 
-                  <button type="submit" name="login_btn" class="btn btn-primary btn-user btn-block"> Login </button>
+                  <button type="submit" name="login_btn" style="background-color: #f00;" class="btn btn-user btn-block"> Login </button>
                   <hr>
                 </form>
               </div>
